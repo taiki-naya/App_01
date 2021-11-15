@@ -7,8 +7,8 @@
 ## リンク / Links
 
 ## 開発言語 / Languages
-- Ruby 3.0.1
-- Ruby on Rails 6.0.4
+- Ruby 2.6.5
+- Ruby on Rails 5.2.6
 - MySQL 8.0.27
 
 ## クラウドアーキテクチャ / Cloud Architecture
