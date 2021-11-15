@@ -1,24 +1,27 @@
-# README
+## AppName
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![overview]()
 
-Things you may want to cover:
+## 概要 / Overview
 
-* Ruby version
+## リンク / Links
 
-* System dependencies
+## 開発言語 / Languages
+- Ruby 3.0.1
+- Ruby on Rails 6.0.4
+- MySQL 8.0.27
 
-* Configuration
+## クラウドアーキテクチャ / Cloud Architecture
+![architecture]()
 
-* Database creation
 
-* Database initialization
+## 機能および使用Gem / Functions & Gems
 
-* How to run the test suite
+## テスト / Test
+- RSpec
+  - 単体テスト(model spec)
+  - 統合テスト(system spec)
 
-* Services (job queues, cache servers, search engines, etc.)
+## 要件定義 / Requirements Definition
 
-* Deployment instructions
-
-* ...
+### カタログ設計およびテーブル定義書 / Catalog Design & Table Definition
