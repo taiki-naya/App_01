@@ -26,6 +26,6 @@ AWS : http://52.199.96.210/posts
 ### [ERD]()
 
 ### [画面遷移図 / Screen transition diagram](https://app.diagrams.net/#G1VQz-injmSvRmOhuQWA85ErnbwLAE2ZpT)
-![ERD](https://github.com/taiki-naya/App_01/blob/master/docs/ERD.png)
+![ST](https://github.com/taiki-naya/App_01/blob/master/docs/ScreenTransition.png)
 
 ### [ワイヤーフレーム / Wire Frame]()
