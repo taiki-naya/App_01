@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>リーグ名：</strong>
+  <%= @league.name %>
+</p>
+
+<p>
+  <strong>国名：</strong>
+  <%= @league.nationality %>
+</p>
+
+<p>
+  <strong>所属チーム：</strong>
+</p>
+
+<%= link_to 'Edit', edit_league_path(@league) %> |
+<%= link_to 'Back', leagues_path %>
