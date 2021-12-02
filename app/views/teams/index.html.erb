@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @league.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Home town</th>
+      <th>Established</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= team.home_town %></td>
+        <td><%= team.established %></td>
+        <td><%= team.description %></td>
+        <td><%= link_to 'Show', league_team_path(@league, team.id) %></td>
+        <td><%= link_to 'Edit', edit_league_team_path(@league, team.id) %></td>
+        <td><%= link_to 'Destroy', league_team_path(@league, team.id), method: :delete, data: { confirm: '削除しますか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'チームを新規登録', new_league_team_path %>

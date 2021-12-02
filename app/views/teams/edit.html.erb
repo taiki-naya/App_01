@@ -1,0 +1,31 @@
+<h1>Editing Team</h1>
+
+<%= form_with(model: [@team.league, @team], local: true) do |form| %>
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :home_town %>
+    <%= form.text_field :home_town %>
+  </div>
+
+  <div class="field">
+    <%= form.label :established %>
+    <%= form.number_field :established %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to 'Show', league_team_path(@team.league_id, @team.id) %> |
+<%= link_to 'Back', league_teams_path %>
