@@ -1,0 +1,16 @@
+<h1>Editing Kit</h1>
+
+<%= form_with(model: [@kit.team.league, @kit.team, @kit], local: true) do |form| %>
+
+
+  <div class="field">
+    <%= form.label :series %>
+    <%= form.text_field :series %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to 'Show', league_team_kit_path(@kit.team.league_id, @kit.team_id, @kit.id) %> |
+<%= link_to 'Back', league_team_kit_path %>
