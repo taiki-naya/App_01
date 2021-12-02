@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @store.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.size %></td>
+        <td><%= item.price %></td>
+        <td><%= link_to 'Show', store_item_path(@store, item.id) %></td>
+        <td><%= link_to 'Edit', edit_store_item_path(@store, item.id) %></td>
+        <td><%= link_to 'Destroy', store_item_path(@store, item.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '商品を新規登録', new_store_item_path %>

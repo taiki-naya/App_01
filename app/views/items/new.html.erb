@@ -1,0 +1,30 @@
+<%= form_with(model: [@store, @item], local: true) do |form| %>
+
+  <h3>商品情報を入力</h3>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :size %>
+    <%= form.number_field :size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.number_field :link %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "登録" %>
+  </div>
+
+<% end %>
+<%= link_to 'Back', store_items_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>商品名：</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>サイズ：</strong>
+  <%= @item.size %>
+</p>
+
+<p>
+  <strong>金額：</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>URL：</strong>
+  <%= @item.link %>
+</p>
+
+<%= link_to 'Edit', edit_store_item_path(@item.store_id, @item.id) %> |
+<%= link_to 'Back', store_items_path %>
