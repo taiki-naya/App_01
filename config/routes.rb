@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'leagues#index'
   resources :leagues do
     resources :teams do
       resources :kits
