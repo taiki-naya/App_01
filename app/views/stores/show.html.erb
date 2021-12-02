@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ストア名：</strong>
+  <%= @store.name %>
+</p>
+
+<p>
+  <strong>URL：</strong>
+  <%= @store.link %>
+</p>
+
+<p>
+  <strong>住所：</strong>
+  <%= @store.address %>
+</p>
+
+<p>
+  <strong></strong>
+  <%= @store.note %>
+</p>
+
+<%= link_to 'Edit', edit_store_path(@store) %> |
+<%= link_to 'Back', stores_path %>

@@ -6,5 +6,8 @@ Rails.application.routes.draw do
       collection {post :import}
     end
   end
+  resources :stores do
+    resources :items
+  end
   resources :posts
 end
