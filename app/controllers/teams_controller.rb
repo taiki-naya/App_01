@@ -29,6 +29,12 @@ class TeamsController < ApplicationController
     end
   end
 
+  def import
+    @league = League.find(params[:league_id])
+    Team.import(params[:file], params[:league_id])
+    redirect_to league_teams_path, notice: 'Teams was successfully created by a CSV file.'
+  end
+
   def update
     @team = Team.find(params[:id])
       if @team.update(team_params)
