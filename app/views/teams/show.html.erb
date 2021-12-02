@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>チーム名：</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>ホームタウン：</strong>
+  <%= @team.home_town %>
+</p>
+
+<p>
+  <strong>設立：</strong>
+  <%= @team.established %>
+</p>
+
+<p>
+  <strong></strong>
+  <%= @team.description %>
+</p>
+
+<%= link_to 'Edit', edit_league_team_path(@team.league_id, @team.id) %> |
+<%= link_to 'Back', league_teams_path %>

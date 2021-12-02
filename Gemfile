@@ -10,6 +10,7 @@ gem 'dotenv-rails'
 
 # Backend
 # gem 'bcrypt', '~> 3.1.7'
+gem 'roo'
 
 # Middleware
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'

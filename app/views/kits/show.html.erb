@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Series:</strong>
+  <%= @kit.series %>
+</p>
+
+<%= link_to 'Edit', edit_league_team_kit_path(@kit.team.league_id, @kit.team_id, @kit.id) %> |
+<%= link_to 'Back', league_team_kits_path %>
