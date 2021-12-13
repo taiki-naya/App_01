@@ -11,11 +11,13 @@ gem 'dotenv-rails'
 # Backend
 # gem 'bcrypt', '~> 3.1.7'
 gem 'roo'
+gem 'mini_magick'
 
 # Middleware
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '~> 3.11'
 # gem 'mini_racer', platforms: :ruby
+gem 'aws-sdk-s3', require: false
 
 # Front / View
 gem 'sass-rails', '~> 5.0'
