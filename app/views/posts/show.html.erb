@@ -3,6 +3,7 @@
 <p>
   <strong>Content:</strong>
   <%= @post.content %>
+  <%= image_tag @post.image.variant(resize:'300x300').processed if @post.image.attached? %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

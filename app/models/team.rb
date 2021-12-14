@@ -2,6 +2,8 @@ class Team < ApplicationRecord
   belongs_to :league
   has_many :kits, dependent: :destroy
 
+  has_one_attached :image
+
   def self.import(file, league)
     CSV.foreach(file.path, headers: true) do |row|
       team =  new

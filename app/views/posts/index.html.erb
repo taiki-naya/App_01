@@ -14,6 +14,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.content %></td>
+        <td><%= image_tag post.image.variant(resize:'300x300').processed if post.image.attached? %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
