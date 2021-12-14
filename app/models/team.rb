@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   belongs_to :league
   has_many :kits, dependent: :destroy
+  has_many :labelling_of_posts, as: :labelable
 
   has_one_attached :image
 
