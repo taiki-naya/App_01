@@ -1,6 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Label:</strong>
+  <% @post.labelling_of_posts.each do |labelling|  %>
+    <% unless labelling.labelable_type == 'Kit' %>
+      <%= labelling.labelable.name %>
+    <% else %>
+      <%= labelling.labelable.series %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
   <strong>Content:</strong>
   <%= @post.content %>
   <%= image_tag @post.image.variant(resize:'300x300').processed if @post.image.attached? %>
