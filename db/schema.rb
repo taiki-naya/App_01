@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_13_130613) do
+ActiveRecord::Schema.define(version: 2021_12_14_062231) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2021_12_13_130613) do
     t.index ["team_id"], name: "index_kits_on_team_id"
   end
 
+  create_table "labelling_of_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "labelable_type"
+    t.bigint "labelable_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["labelable_type", "labelable_id"], name: "index_labelling_of_posts_on_labelable_type_and_labelable_id"
+    t.index ["post_id"], name: "index_labelling_of_posts_on_post_id"
+  end
+
   create_table "leagues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "nationality"
@@ -88,5 +98,6 @@ ActiveRecord::Schema.define(version: 2021_12_13_130613) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "stores"
   add_foreign_key "kits", "teams"
+  add_foreign_key "labelling_of_posts", "posts"
   add_foreign_key "teams", "leagues"
 end
