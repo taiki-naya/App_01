@@ -13,10 +13,19 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @leagues = League.all
+    @stores  = Store.all
   end
 
   # GET /posts/1/edit
   def edit
+    @labelled_records = @post.labelling_of_posts
+    @labelled_hash = {}
+    @labelled_records.each do |labelled_record|
+      @labelled_hash.store(labelled_record.labelable_id, labelled_record.labelable_type.downcase)
+    end
+    @leagues = League.all
+    @stores  = Store.all
   end
 
   # POST /posts or /posts.json
@@ -25,6 +34,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        LabellingOfPost.insert(params, @post)
         format.html { redirect_to @post, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
@@ -38,6 +48,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        LabellingOfPost.insert(params, @post)
         format.html { redirect_to @post, notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
