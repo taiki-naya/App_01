@@ -35,4 +35,13 @@
   </div>
 
   <%= form.submit "登録" %>
-<% end %>
+
+  <% end %>
+
+  <%= form_with url: import_league_teams_path do |f| %>
+  <h3>CSVファイルから登録</h3>
+
+  <%= f.label :CSVファイルからチームを一括登録する場合はファイルを選択してください %>
+  <%= f.file_field :file, accept: '.csv' %>
+  <%= f.submit "CSVから登録" %>
+  <% end %>
