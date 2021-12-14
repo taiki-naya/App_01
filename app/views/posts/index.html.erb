@@ -13,6 +13,14 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td>
+        <% post.labelling_of_posts.each do |labelling|  %>
+          <%= link_to labelling.labelable.name, store_path(labelling.labelable.id) if labelling.labelable_type == 'Store' %>
+          <%= link_to labelling.labelable.name, league_path(labelling.labelable.id) if labelling.labelable_type == 'League' %>
+          <%= link_to labelling.labelable.name, league_team_path(labelling.labelable.league_id, labelling.labelable.id) if labelling.labelable_type == 'Team' %>
+          <%= link_to labelling.labelable.series, league_team_kit_path(labelling.labelable.team.league_id, labelling.labelable.team_id, labelling.labelable.id) if labelling.labelable_type == 'Kit' %>
+        <% end  %>
+        </td>
         <td><%= post.content %></td>
         <td><%= image_tag post.image.variant(resize:'300x300').processed if post.image.attached? %></td>
         <td><%= link_to 'Show', post %></td>
