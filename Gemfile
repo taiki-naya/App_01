@@ -13,6 +13,7 @@ gem 'dotenv-rails'
 gem 'roo'
 gem 'mini_magick'
 gem 'devise'
+gem 'cancancan'
 
 # Middleware
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
