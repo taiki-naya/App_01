@@ -14,6 +14,7 @@ gem 'roo'
 gem 'mini_magick'
 gem 'devise'
 gem 'cancancan'
+gem 'rails_admin', '~> 2.0'
 
 # Middleware
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
