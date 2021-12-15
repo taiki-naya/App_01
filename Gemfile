@@ -12,6 +12,7 @@ gem 'dotenv-rails'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'roo'
 gem 'mini_magick'
+gem 'devise'
 
 # Middleware
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
