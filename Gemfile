@@ -12,6 +12,9 @@ gem 'dotenv-rails'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'roo'
 gem 'mini_magick'
+gem 'devise'
+gem 'cancancan'
+gem 'rails_admin', '~> 2.0'
 
 # Middleware
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
@@ -44,6 +47,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'letter_opener_web'
 end
 
 group :test do
