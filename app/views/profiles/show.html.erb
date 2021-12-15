@@ -1,0 +1,6 @@
+<h1>Users#show</h1>
+<p>名前 : <%= @user.profile.name if @user.profile.present? %></p>
+<p>メールアドレス : <%= @user.email %></p>
+
+<%= link_to 'ユーザープロフィールの変更', edit_profile_path(@user.profile.id) %>
+<%= link_to '登録情報の変更', edit_user_registration_path %>

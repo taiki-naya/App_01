@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   passwords:     'users/passwords',
   registrations: 'users/registrations'
 }
+  resources :profiles, only: [:show, :edit, :update]
   root to: 'leagues#index'
   resources :leagues do
     resources :teams do
