@@ -5,6 +5,7 @@ class LeaguesController < ApplicationController
 
   def show
     @league = League.find(params[:id])
+    @favorite = current_user.favorites.find_by(favoritable_type: 'League', favoritable_id: @league.id) if current_user.present?
   end
 
   def new
