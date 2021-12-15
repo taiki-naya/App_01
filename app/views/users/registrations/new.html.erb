@@ -4,6 +4,19 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.fields_for :profile do |user_profile| %>
+    <div class="line">
+      <%= user_profile.label :名前 %>
+      <%= user_profile.text_field :name %>
+    </div>
+    <div class="field">
+      <%= user_profile.label :image %>
+      <%= user_profile.file_field :image %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
