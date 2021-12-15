@@ -5,6 +5,7 @@ class StoresController < ApplicationController
 
   def show
     @store = Store.find(params[:id])
+    @favorite = current_user.favorites.find_by(favoritable_type: 'Store', favoritable_id: @store.id) if current_user.present?
   end
 
   def new
