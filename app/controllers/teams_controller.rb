@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @favorite = current_user.favorites.find_by(favoritable_type: 'Team', favoritable_id: @team.id) if current_user.present?
   end
 
   def new
