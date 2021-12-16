@@ -1,6 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <% @item.labelling_of_items.each do |labelling|  %>
+    <%= link_to labelling.labelable.name, league_path(labelling.labelable.id) if labelling.labelable_type == 'League' %>
+    <%= link_to labelling.labelable.name, league_team_path(labelling.labelable.league_id, labelling.labelable.id) if labelling.labelable_type == 'Team' %>
+    <%= link_to labelling.labelable.series, league_team_kit_path(labelling.labelable.team.league_id, labelling.labelable.team_id, labelling.labelable.id) if labelling.labelable_type == 'Kit' %>
+  <% end %>
+<p>
+
+<p>
   <strong>商品名：</strong>
   <%= @item.name %>
 </p>

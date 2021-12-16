@@ -2,6 +2,20 @@
 
 <%= form_with(model: [@item.store, @item], local: true) do |form| %>
 
+<%= collection_select(:label, :league, @leagues, :id, :name, include_blank: "リーグを選択してください") %>
+ <%= select(:label, :team, [], include_blank: "チームを選択してください", class: "default-teams-of-league-select") %>
+ <%= select(:label, :kit, [], include_blank: "ユニフォームを選択してください", class: "default-kits-of-team-select") %>
+ <% @leagues.each do |league| %>
+   <template id="teams-of-league_<%= league.id %>">
+     <%= collection_select(:label, :team, league.teams, :id, :name, include_blank: "チームを選択してください") %>
+   </template>
+   <% league.teams.each do |team| %>
+     <template id="kits-of-team_<%= team.id %>">
+       <%= collection_select(:label, :kit, team.kits, :id, :series, include_blank: "ユニフォームを選択してください") %>
+     </template>
+   <% end %>
+ <% end %>
+
 
   <div class="field">
     <%= form.label :name %>
