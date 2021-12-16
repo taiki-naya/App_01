@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'leagues#index'
+  root to: 'tops#index'
+  get 'overview', to: 'tops#overview'
   # devise_for :shoppers
   devise_for :users, controllers: {
     sessions:      'users/sessions',
