@@ -12,33 +12,42 @@
   <body>
 
     <div class="container">
-          <div class="container-fluid main">
-            <nav class = 'navbar navbar-default'>
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  <%= link_to "KitCommu", root_path, class:'navbar-brand' %>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                  <ul class="nav navbar-nav">
-                    <li><%= link_to "About Us", overview_path %></li>
-                    <% if user_signed_in? %>
-                      <li><%= link_to "YourProfile", profile_path(id: current_user.profile.id) %></li>
-                      <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-                    <% else %>
-                      <li><%= link_to "Sign Up", new_user_registration_path %></li>
-                      <li><%= link_to "Log In", new_user_session_path %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-            </nav>
+      <div class="container-fluid main">
+        <nav class = 'navbar navbar-default'>
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <%= link_to "KitCommu", root_path, class:'navbar-brand' %>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><%= link_to "About Us", overview_path %></li>
+                <% if user_signed_in? %>
+                  <li><%= link_to "YourProfile", profile_path(id: current_user.profile.id) %></li>
+                  <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                  <li><%= link_to "Log In", new_user_session_path %></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
+        </nav>
+      </div>
 
-    <%= yield %>
+      <%= yield %>
+
+      <div class=footer>
+        <div class="container-fluid">
+          <footer>
+            <p>Copyright ©︎ 2021 KitCommu All Rights Reserved.</p>
+          </footer>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
