@@ -11,10 +11,12 @@ class ItemsController < ApplicationController
   def new
     @store = Store.find(params[:store_id])
     @item  = Item.new
+    @leagues = League.all
   end
 
   def edit
     @item = Item.find(params[:id])
+    @leagues = League.all
   end
 
   def create
@@ -22,6 +24,7 @@ class ItemsController < ApplicationController
     @store = Store.find(params[:store_id])
     @item.store_id = @store.id
     if @item.save
+      LabellingOfItem.insert(params, @item)
       redirect_to store_items_path, notice: 'Item was successfully created.'
     else
       render :new, status: :unprocessable_entity
