@@ -346,6 +346,7 @@ DEPENDENCIES
   rails_admin (~> 2.0)
   roo
   sass-rails (~> 5.0)
+  sassc-rails (>= 2.1.0)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
