@@ -42,6 +42,18 @@
         </div>
       </header>
 
+      <div class="content">
+        <% if notice %>
+          <p class="alert alert-notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-error"><%= alert %></p>
+        <% end %>
+        <article class="main_content">
+          <%= yield %>
+        </article>
+      </div>
+
       <div class="wrapper clearfix">
         <aside id="side_menu">
           <div class="index_link">
@@ -62,9 +74,6 @@
             </div>
           <% end %>
         </aside>
-
-      <div class="content">
-        <%= yield %>
       </div>
 
       <br><br><br>
