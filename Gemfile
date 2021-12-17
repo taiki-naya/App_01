@@ -44,6 +44,7 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'faker'
 end
 
 group :development do
