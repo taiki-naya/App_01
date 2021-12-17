@@ -1,42 +1,46 @@
-<h2>Sign up</h2>
+<h4>新規登録</h4>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.fields_for :profile do |user_profile| %>
-    <div class="line">
-      <%= user_profile.label :名前 %>
-      <%= user_profile.text_field :name %>
-    </div>
+  <%= f.fields_for :profile do |user_profile| %>
     <div class="field">
-      <%= user_profile.label :image %>
+      <div class="inputWithIcon">
+        <%= user_profile.text_field :name, placeholder: 'Name' %>
+        <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= user_profile.label :※アイコンを追加する場合は画像を選択してください %>
       <%= user_profile.file_field :image %>
     </div>
-    <% end %>
+  <% end %>
+
+  <div class="field">
+    <div class="inputWithIcon">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
+      <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="inputWithIcon">
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password (#{@minimum_password_length}以上入力してください)" %>
+      <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="inputWithIcon">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password (再入力)' %>
+      <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
+    </div>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <div class="inputWithIcon">
+      <%= f.submit "新規登録" %>
+    </div>
   </div>
 <% end %>
-
 <%= render "users/shared/links" %>
