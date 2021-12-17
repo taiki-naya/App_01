@@ -42,6 +42,27 @@
         </div>
       </div>
 
+      <div class="wrapper clearfix">
+        <aside id="side_menu">
+          <div class="index_link">
+            <li><%= link_to "掲示板へ", posts_path %></li>
+            <li><%= link_to "ストア一覧へ", stores_path %></li>
+            <p>チームから探す</p>
+          </div>
+          <% @leagues.each_with_index do |league, i| %>
+            <div class="cp_actab">
+              <% i += 1 %>
+              <input type="checkbox" name="tabs" id="tab_<%= i %>" >
+              <label for="tab_<%= i %>"><%= league.name %></label>
+              <ul class="cp_actab-content">
+                <% league.teams.each do |team| %>
+                  <li><%= link_to team.name, league_team_path(team.league_id, team.id) %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </aside>
+
       <%= yield %>
 
       <div class=footer>
