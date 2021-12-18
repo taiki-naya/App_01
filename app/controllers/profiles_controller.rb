@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
 
   def show
-    @user = User.find(current_user.id)
-    redirect_to root_path, notice: "閲覧権限がありません" unless (user_signed_in? && @user == current_user)
+      @user = User.find(params[:id])
+      redirect_to root_path, notice: "閲覧権限がありません" unless (user_signed_in? && @user == current_user) || current_user&.admin?
   end
 
   def edit
