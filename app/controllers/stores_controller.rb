@@ -19,10 +19,17 @@ class StoresController < ApplicationController
 
   def create
     @store = Store.new(store_params)
-    if @store.save
-      redirect_to @store, notice: 'Stores was successfully created.'
+    unless @store.link.present?
+      @store.link = 'https://temprary-url'
+      @store.save
+      @store.update_attribute(:link, '')
+      redirect_to @store, notice: 'ストア情報が作成されました。'
     else
-      render :new, status: :unprocessable_entity
+      if @store.save
+        redirect_to @store, notice: 'Stores was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
