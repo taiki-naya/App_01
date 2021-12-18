@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
+      LabellingOfItem.insert(params, @item)
       redirect_to store_item_path, notice: "Item was successfully updated."
     else
       render :edit, status: :unprocessable_entity
