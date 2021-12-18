@@ -33,4 +33,7 @@
  .text_left td{
    text-align: left;
  }
- 
+
+ .page_title {
+   text-align: center;
+ }

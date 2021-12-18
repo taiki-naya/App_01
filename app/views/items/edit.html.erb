@@ -1,45 +1,57 @@
-<h1>Editing Item</h1>
+<h1>商品情報編集</h1>
 
 <%= form_with(model: [@item.store, @item], local: true) do |form| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= @item.errors.count %> 件のエラーにより登録できませんでした</h2>
 
-<%= collection_select(:label, :league, @leagues, :id, :name, include_blank: "リーグを選択してください") %>
- <%= select(:label, :team, [], include_blank: "チームを選択してください", class: "default-teams-of-league-select") %>
- <%= select(:label, :kit, [], include_blank: "ユニフォームを選択してください", class: "default-kits-of-team-select") %>
- <% @leagues.each do |league| %>
-   <template id="teams-of-league_<%= league.id %>">
-     <%= collection_select(:label, :team, league.teams, :id, :name, include_blank: "チームを選択してください") %>
-   </template>
-   <% league.teams.each do |team| %>
-     <template id="kits-of-team_<%= team.id %>">
-       <%= collection_select(:label, :kit, team.kits, :id, :series, include_blank: "ユニフォームを選択してください") %>
-     </template>
-   <% end %>
- <% end %>
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <p>タグを変更しない場合は何も選択しないでください</p>
+  <%= collection_select(:label, :league, @leagues, :id, :name, include_blank: "リーグを選択してください") %>
+  <%= select(:label, :team, [], include_blank: "チームを選択してください", class: "default-teams-of-league-select") %>
+  <%= select(:label, :kit, [], include_blank: "ユニフォームを選択してください", class: "default-kits-of-team-select") %>
+  <% @leagues.each do |league| %>
+    <template id="teams-of-league_<%= league.id %>">
+      <%= collection_select(:label, :team, league.teams, :id, :name, include_blank: "チームを選択してください") %>
+    </template>
+    <% league.teams.each do |team| %>
+      <template id="kits-of-team_<%= team.id %>">
+        <%= collection_select(:label, :kit, team.kits, :id, :series, include_blank: "ユニフォームを選択してください") %>
+      </template>
+    <% end %>
+  <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: '商品名を入力' %>
   </div>
 
   <div class="field">
-    <%= form.label :size %>
-    <%= form.number_field :size %>
+    <%= form.select :size, [["Kids", "Kids"], ["XS", "XS"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL", "XL"], ["XXL", "XXL"]] %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+    <%= form.number_field :price, placeholder: '値段を入力' %>
   </div>
 
   <div class="field">
-    <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%= form.text_field :link, placeholder: '商品URLを入力' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :画像を変更しない場合は何も選択しないでください %>
+    <%= form.file_field :image %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '更新'%>
   </div>
 <% end %>
-<%= link_to 'Show', store_item_path(@item.store_id, @item.id) %> |
-<%= link_to 'Back', store_items_path %>
+<%= link_to '商品詳細画面へ戻る', store_item_path(@item.store_id, @item.id) %> |
+<%= link_to '商品一覧へ戻る', store_items_path %>

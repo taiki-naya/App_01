@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def index
     @store = Store.find(params[:store_id])
-    @items = @store.items
+    @items = @store.items.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def show
