@@ -1,21 +1,32 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Label:</strong>
-  <% @post.labelling_of_posts.each do |labelling|  %>
-    <% unless labelling.labelable_type == 'Kit' %>
-      <%= labelling.labelable.name %>
-    <% else %>
-      <%= labelling.labelable.series %>
-    <% end %>
-  <% end %>
+  <strong>タグ:</strong>
 </p>
+<div class="widget_tag_cloud">
+  <span>
+    <% @post.labelling_of_posts.each do |labelling|  %>
+      <div class="tagcloud">
+        <%= link_to labelling.labelable.name, store_path(labelling.labelable.id) if labelling.labelable_type == 'Store' %>
+        <%= link_to labelling.labelable.name, league_path(labelling.labelable.id) if labelling.labelable_type == 'League' %>
+        <%= link_to labelling.labelable.name, league_team_path(labelling.labelable.league_id, labelling.labelable.id) if labelling.labelable_type == 'Team' %>
+        <%= link_to labelling.labelable.series, league_team_kit_path(labelling.labelable.team.league_id, labelling.labelable.team_id, labelling.labelable.id) if labelling.labelable_type == 'Kit' %>
+      </div>
+    <% end  %>
+  </span>
+</div>
 
 <p>
-  <strong>Content:</strong>
+  <strong>投稿内容:</strong>
+</p>
+<p>
   <%= @post.content %>
-  <%= image_tag @post.image.variant(resize:'300x300').processed if @post.image.attached? %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<p>
+  <strong>投稿画像:</strong>
+</p>
+<p>
+  <%= image_tag @post.image.variant(resize:'500x500').processed if @post.image.attached? %>
+</p>
+
+<button type="button" class="btn btn-dark btn-sm"><%= link_to '編集', edit_post_path(@post) %></button> |
+<button type="button" class="btn btn-dark btn-sm"><%= link_to '一覧へ戻る', posts_path %></button>
