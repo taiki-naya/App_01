@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   has_many :labelling_of_posts, dependent: :destroy
   belongs_to :user
 
+  validates :content, presence: true
+
   def LabellingOfPost.insert(params, post)
     stores = post.labelling_of_posts.where(labelable_type: 'Store')
     leagues = post.labelling_of_posts.where(labelable_type: 'League')
