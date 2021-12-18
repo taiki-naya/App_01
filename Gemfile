@@ -44,7 +44,9 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
@@ -57,7 +59,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver'
   gem 'webdrivers'
 end
 
