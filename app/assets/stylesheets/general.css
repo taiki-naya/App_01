@@ -14,3 +14,23 @@
 .top_page_title {
   text-align: center;
 }
+
+.white_box {
+   border: solid 5px;
+   border-color: #777777;
+   border-radius: 10px;
+   width: 95%;
+   text-align: center;
+   display: inline-block;
+ }
+
+ .store_info th{
+   padding: 10px 0;
+   width: 50px;
+   text-align: right;
+ }
+
+ .text_left td{
+   text-align: left;
+ }
+ 
