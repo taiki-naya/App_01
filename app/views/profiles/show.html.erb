@@ -1,13 +1,42 @@
-<h1>Users#show</h1>
-<p>名前 : <%= @user.profile.name if @user.profile.present? %></p>
-<p>メールアドレス : <%= @user.email %></p>
+<div class="profile_page_content">
+  <div class="profile_page_title">
+    <h4>Your Profile</h4>
+  </div>
 
-<p>
-  お気に入り :
-  <% @user.favorites.each do |favorite| %>
-    <%= favorite.favoritable.name %>
-  <% end %>
-</p>
+  <div class="profile">
+    <% if @user.profile.image.attached? %>
+      <%= image_tag @user.profile.image, class: 'profile__img' %>
+    <% else %>
+      <%= image_tag 'item_no_image.png', size: "300x300", class: 'profile__img' %>
+    <% end %>
+    <div class="profile__name">
+      <%= @user.profile.name if @user.profile.present? %>
+    </div>
+    <div class="profile__desc">
+      <%= @user.profile.introduction if @user.profile.present? %>
+    </div>
+  </div>
 
-<%= link_to 'ユーザープロフィールの変更', edit_profile_path(@user.profile.id) %>
-<%= link_to '登録情報の変更', edit_user_registration_path %>
+  <br>
+  <br>
+
+  <div class="your_favorite">
+    <p>あなたのお気に入り :</p>
+    <% @user.favorites.each do |favorite| %>
+      <p>
+        <% if favorite.favoritable_type == 'Store' %>
+          <button type="button" class="btn btn-dark btn-sm"><%= link_to favorite.favoritable.name, store_path(favorite.favoritable.id) %></button>
+        <% end %>
+        <% if favorite.favoritable_type == 'League' %>
+          <button type="button" class="btn btn-dark btn-sm"><%= link_to favorite.favoritable.name, league_path(favorite.favoritable.id) %></button>
+        <% end %>
+        <% if favorite.favoritable_type == 'Team' %>
+          <button type="button" class="btn btn-dark btn-sm"><%= link_to favorite.favoritable.name, league_team_path(favorite.favoritable.league_id, favorite.favoritable.id) %></button>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+
+  <button type="button" class="btn btn-default btn-ml"><%= link_to 'ユーザープロフィールの変更', edit_profile_path(@user.profile.id) %></button>
+  <button type="button" class="btn btn-default btn-ml"><%= link_to '登録情報の変更', edit_user_registration_path %></button>
+</div>
