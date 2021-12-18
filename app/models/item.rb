@@ -3,6 +3,9 @@ class Item < ApplicationRecord
   has_many :labelling_of_items, dependent: :destroy
   has_one_attached :image
 
+  validates :name, presence: true
+  validates :price, presence: true
+
   enum size: { Kids: 0, XS: 1, S: 2, M: 3, L: 4, XL: 5, XXL: 6 }
 
   def LabellingOfItem.insert(params, item)
