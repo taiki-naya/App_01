@@ -1,24 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="white_box">
+  <h3><%= @league.name %></h3>
+  <table class="store_info row text_left">
+    <tr class="row">
+      <th class="col-md-12"><%# = image_tag @league.image.variant(resize: "250x250") if @league.image.attached?  %></th>
+    </tr>
+    <tr class="row">
+      <th>開催国</th>
+      <td class="col-md-3"><strong><%= @league.nationality %></strong></td>
+    </tr>
+  </table><br>
+  <% if user_signed_in? %>
+    <% if @favorite.present? %>
+      <%= link_to 'お気に入り解除する', favorite_path(favorite: @favorite.id), method: :delete %>
+    <% else %>
+      <%= link_to 'お気に入りする', favorites_path(league: @league.id), method: :post %>
+    <% end %>
+  <% end %>
+  <% if user_signed_in? && current_user&.admin? %>
+    <%= link_to '編集', edit_league_path(@league) %> |
+    <%= link_to '一覧へ戻る', leagues_path %>
+  <% end %>
+</div><br><br>
 
-<p>
-  <strong>リーグ名：</strong>
-  <%= @league.name %>
-</p>
-
-<p>
-  <strong>国名：</strong>
-  <%= @league.nationality %>
-</p>
-
-<p>
-  <strong>所属チーム：</strong>
-</p>
-
-<% if @favorite.present? %>
-  <%= link_to 'お気に入り解除する', favorite_path(favorite: @favorite.id), method: :delete %>
-<% else %>
-  <%= link_to 'お気に入りする', favorites_path(league: @league.id), method: :post %>
-<% end %>
-
-<%= link_to 'Edit', edit_league_path(@league) %> |
-<%= link_to 'Back', leagues_path %>
+<div class="row">
+  <% @league.teams.each do |team| %>
+    <div class="top_items col-sm-6 col-md-3">
+      <div class="card">
+        <% if team.image.attached? %>
+          <%= link_to image_tag(team.image.variant(combine_options:{gravity: :center, resize:"385x575^", crop:"385x575+0+0"})),
+          league_team_path(team.league_id, team.id), class:"card-img-top"  %>
+        <% else %>
+          <%= image_tag 'item_no_image.png', size: '385x575', class:"card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text">
+            <%= link_to team.name, league_team_path(team.league_id, team.id) %><br>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>

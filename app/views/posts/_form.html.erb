@@ -1,7 +1,8 @@
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(post.errors.count, "error")%> 件のエラーにより保存できませんでした。</h2>
+
 
       <ul>
       <% post.errors.full_messages.each do |message| %>
@@ -12,45 +13,46 @@
   <% end %>
 
   <div class="tagging whole_tagging">
-  <div class="tagging_store">
-    <p><%= collection_select(:label, :store, @stores, :id, :name, include_blank: "ストアを選択してください", selected: @labelled_hash&.key('store')) %></p>
-  </div>
-  <div class="tagging_league">
-    <p><%= collection_select(:label, :league, @leagues, :id, :name, include_blank: "リーグを選択してください", selected: @labelled_hash&.key('league')) %></p>
-  </div>
-  <div class="tagging_default_team">
-    <p><%= select(:label, :team, [], include_blank: "チームを選択してください", class: "default-teams-of-league-select") %></p>
-  </div>
-  <div class="tagging_default_kit">
-    <p><%= select(:label, :kit, [], include_blank: "ユニフォームを選択してください", class: "default-kits-of-team-select") %></p>
-  </div>
-  <% @leagues.each do |league| %>
-    <div class="tagging_team">
-      <template id="teams-of-league_<%= league.id %>">
-        <p class="tagged_team"><%= collection_select(:label, :team, league.teams, :id, :name, include_blank: "チームを選択してください", selected: @labelled_hash&.key('team')) %></p>
-      </template>
+    <div class="tagging_store">
+      <p><%= collection_select(:label, :store, @stores, :id, :name, include_blank: "ストアを選択してください", selected: @labelled_hash&.key('store')) %></p>
     </div>
-    <% league.teams.each do |team| %>
+    <div class="tagging_league">
+      <p><%= collection_select(:label, :league, @leagues, :id, :name, include_blank: "リーグを選択してください", selected: @labelled_hash&.key('league')) %></p>
+    </div>
+    <div class="tagging_default_team">
+      <p><%= select(:label, :team, [], include_blank: "チームを選択してください", class: "default-teams-of-league-select") %></p>
+    </div>
+    <div class="tagging_default_kit">
+      <p><%= select(:label, :kit, [], include_blank: "ユニフォームを選択してください", class: "default-kits-of-team-select") %></p>
+    </div>
+    <% @leagues.each do |league| %>
       <div class="tagging_team">
-        <template id="kits-of-team_<%= team.id %>">
-          <p class="tagged_kit"><%= collection_select(:label, :kit, team.kits, :id, :series, include_blank: "ユニフォームを選択してください", selected: @labelled_hash&.key('kit')) %></p>
+        <template id="teams-of-league_<%= league.id %>">
+          <p class="tagged_team"><%= collection_select(:label, :team, league.teams, :id, :name, include_blank: "チームを選択してください", selected: @labelled_hash&.key('team')) %></p>
         </template>
       </div>
+      <% league.teams.each do |team| %>
+        <div class="tagging_team">
+          <template id="kits-of-team_<%= team.id %>">
+            <p class="tagged_kit"><%= collection_select(:label, :kit, team.kits, :id, :series, include_blank: "ユニフォームを選択してください", selected: @labelled_hash&.key('kit')) %></p>
+          </template>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+
+
+
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, placeholder: '投稿を入力してください' %>
   </div>
 
   <div class="field">
-    <%= form.label :画像を選択してください。 %>
     <%= form.file_field :image %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '投稿' %>
   </div>
 <% end %>

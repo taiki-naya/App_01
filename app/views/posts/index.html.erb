@@ -1,36 +1,65 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="post__container">
+  <div class="post__title">
+    みんなの投稿
+  </div>
+  <div class="post__contents scroll">
     <% @posts.each do |post| %>
-      <tr>
-        <td>
-        <% post.labelling_of_posts.each do |labelling|  %>
-          <%= link_to labelling.labelable.name, store_path(labelling.labelable.id) if labelling.labelable_type == 'Store' %>
-          <%= link_to labelling.labelable.name, league_path(labelling.labelable.id) if labelling.labelable_type == 'League' %>
-          <%= link_to labelling.labelable.name, league_team_path(labelling.labelable.league_id, labelling.labelable.id) if labelling.labelable_type == 'Team' %>
-          <%= link_to labelling.labelable.series, league_team_kit_path(labelling.labelable.team.league_id, labelling.labelable.team_id, labelling.labelable.id) if labelling.labelable_type == 'Kit' %>
-        <% end  %>
-        </td>
-        <td><%= post.content %></td>
-        <td><%= image_tag post.image.variant(resize:'300x300').processed if post.image.attached? %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="post__block">
+        <figure>
+          <% user_profile = post.user.profile %>
+          <% if user_profile.image.attached? %>
+            <%= image_tag user_profile.image.variant(resize:'100x100').processed %>
+          <% else %>
+            <%= image_tag 'item_no_image.png', size: '200x200' %>
+          <% end %>
+        </figure>
+        <div class="post__block-text">
+          <div class="name">
+            <%= user_profile.name %>
+          </div>
+          <div class="widget_tag_cloud">
+            <span>
+              <% post.labelling_of_posts.each do |labelling|  %>
+                <div class="tagcloud">
+                  <%= link_to labelling.labelable.name, store_path(labelling.labelable.id) if labelling.labelable_type == 'Store' %>
+                  <%= link_to labelling.labelable.name, league_path(labelling.labelable.id) if labelling.labelable_type == 'League' %>
+                  <%= link_to labelling.labelable.name, league_team_path(labelling.labelable.league_id, labelling.labelable.id) if labelling.labelable_type == 'Team' %>
+                  <%= link_to labelling.labelable.series, league_team_kit_path(labelling.labelable.team.league_id, labelling.labelable.team_id, labelling.labelable.id) if labelling.labelable_type == 'Kit' %>
+                </div>
+              <% end  %>
+            </span>
+          </div>
+          <div class="date">
+            <% duration = ((Time.zone.now - post.created_at) / 60).to_i %>
+            <% if duration <= 60 %>
+              <%= "#{duration}分前" %>
+            <% elsif duration <= 1440 %>
+              <%= "#{duration / 60 }時間前" %>
+            <% else %>
+              <%= "#{duration / 1440 }日前" %>
+            <% end %>
+          </div>
+          <div class="text">
+            <%= post.content %>
+            <div class="in-pict">
+              <%= image_tag post.image.variant(resize:'300x300').processed if post.image.attached? %>
+            </div>
+            <% if user_signed_in? && (post.user == current_user || current_user&.admin?) %>
+              <div class="post__icon">
+                <div class="post-edit">
+                  <%= link_to '編集', edit_post_path(post) %>
+                  <i class="fa fa-pencil fa-lg fa-fw" aria-hidden="true"></i>
+                </div>
+                <div class="post-destroy">
+                  <%= link_to '削除', post, method: :delete, data: { confirm: '削除してよろしいですか?' } %>
+                  <i class="fa fa-trash fa-lg fa-fw" aria-hidden="true"></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+  </div>
+</div>
+<%= link_to '投稿する', new_post_path %>

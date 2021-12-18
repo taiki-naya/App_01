@@ -1,7 +1,7 @@
 <%= form_with(model: league, local: true) do |form| %>
   <% if league.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(league.errors.count, "error") %> prohibited this league from being saved:</h2>
+      <h2><%= league.errors.count %> 件のエラーにより登録できませんでした。</h2>
 
       <ul>
       <% league.errors.full_messages.each do |message| %>
@@ -12,16 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: 'リーグ名を入力' %>
   </div>
 
   <div class="field">
-    <%= form.label :nationality %>
-    <%= form.text_field :nationality %>
+    <%= form.text_field :nationality, placeholder: '開催国を入力' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '登録' %>
   </div>
 <% end %>

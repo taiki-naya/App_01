@@ -1,4 +1,15 @@
 <%= form_with(model: [@store, @item], local: true) do |form| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @item.errors.count %> 件のエラーにより登録できませんでした。</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <h3>商品情報を入力</h3>
 
@@ -17,23 +28,25 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: '商品名を入力' %>
   </div>
 
   <div class="field">
-    <%= form.label :size %>
-    <%= form.number_field :size %>
+    <%= form.label :サイズを選択してください %><br>
+    <%= form.select :size, [["Kids", "Kids"], ["XS", "XS"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL", "XL"], ["XXL", "XXL"]] %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+    <%= form.number_field :price, placeholder: '値段を入力' %>
   </div>
 
   <div class="field">
-    <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%= form.text_field :link, placeholder: '商品URLを入力' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :画像を追加する場合はファイルを選択してください %>
+    <%= form.file_field :image %>
   </div>
 
   <div class="actions">
@@ -41,4 +54,4 @@
   </div>
 
 <% end %>
-<%= link_to 'Back', store_items_path %>
+<%= link_to '商品一覧へ戻る', store_items_path %>

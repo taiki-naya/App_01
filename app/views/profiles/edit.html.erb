@@ -1,8 +1,8 @@
-<h1>ユーザープロフィール編集</h1>
+<h3>ユーザープロフィール編集</h3>
 <%= form_with(model: @profile, local: true) do |form| %>
     <% if @profile.errors.any? %>
       <div id="error_explanation">
-            <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+            <h2><%= @profile.errors.count %> 件のエラーにより登録できませんでした</h2>
 
             <ul>
                 <% @profile.errors.full_messages.each do |message| %>
@@ -12,28 +12,38 @@
       </div>
     <% end %>
 
-    <div class="field">
-        <%= form.label :名前 %>
-        <%= form.text_field :name %>
-    </div>
+    <div class="editing_user_profile">
+        <div class="field">
+            <%= form.label :名前 %><br>
+            <%= form.text_field :name %>
+        </div>
+        <br>
+        <br>
 
-    <div class="field">
-        <%= form.label :JリーグID %>
-        <%= form.text_field :jid %>
-    </div>
+        <div class="field">
+            <%= form.label :JリーグID %><br>
+            <%= form.text_field :jid, placeholder: 'Jリーグidを連携する場合は入力してください' %>
+        </div>
+        <br>
+        <br>
 
-    <div class="field">
-        <%= form.label :image %>
-        <%= form.file_field :image %>
-    </div>
+        <div class="field">
+            <%= form.label :画像 %><br>
+            <%= form.file_field :image %>
+        </div>
+        <br>
+        <br>
 
-    <div class="field">
-        <%= form.label :自己紹介 %>
-        <%= form.text_field :introduction %>
-    </div>
+        <div class="field">
+            <%= form.label :自己紹介 %><br>
+            <%= form.text_field :introduction %>
+        </div>
+        <br>
+        <br>
 
-    <div class="actions">
-        <%= form.submit %>
+        <div class="actions">
+            <%= form.submit '更新' %>
+        </div>
     </div>
 
 <% end %>

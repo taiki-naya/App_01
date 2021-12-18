@@ -1,14 +1,19 @@
-<h2>Log in</h2>
+<h4>ログイン</h4>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="inputWithIcon">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
+      <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="inputWithIcon">
+      <%= f.password_field :password, autocomplete: "current-password",placeholder: 'Password'  %>
+      <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -19,8 +24,13 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="inputWithIcon">
+      <%= f.submit "ログイン" %>
+    </div>
   </div>
 <% end %>
+<br>
+<br>
 
 <%= render "users/shared/links" %>
+<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>

@@ -1,10 +1,11 @@
 class StoresController < ApplicationController
   def index
-    @stores = Store.all
+    @stores = Store.all.page(params[:page]).per(10)
   end
 
   def show
     @store = Store.find(params[:id])
+    @items  = @store.items.order(created_at: :desc).limit(8)
     @favorite = current_user.favorites.find_by(favoritable_type: 'Store', favoritable_id: @store.id) if current_user.present?
   end
 

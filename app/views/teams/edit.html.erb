@@ -1,31 +1,43 @@
-<h1>Editing Team</h1>
+<h3>チーム情報編集</h3>
 
 <%= form_with(model: [@team.league, @team], local: true) do |form| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> 件のエラーにより登録できませんでした。</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: 'チーム名を入力してください' %>
   </div>
 
   <div class="field">
-    <%= form.label :home_town %>
-    <%= form.text_field :home_town %>
+    <%= form.text_field :home_town, placeholder: 'ホームタウンを入力してください' %>
   </div>
 
   <div class="field">
-    <%= form.label :established %>
-    <%= form.number_field :established %>
+    <%= form.number_field :established, placeholder: '設立年を入力してください' %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, placeholder: 'チーム紹介を入力してください' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :画像を変更しない場合は何も選択しないでください %>
+    <%= form.file_field :image %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
-<%= link_to 'Show', league_team_path(@team.league_id, @team.id) %> |
-<%= link_to 'Back', league_teams_path %>
+<%= link_to 'チーム詳細へ戻る', league_team_path(@team.league_id, @team.id) %> |
+<%= link_to '一覧へ戻る', league_teams_path %>

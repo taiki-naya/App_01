@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  root to: 'leagues#index'
+  root to: 'tops#index'
+  get 'overview', to: 'tops#overview'
   # devise_for :shoppers
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_user_sign_in'
+  end
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',

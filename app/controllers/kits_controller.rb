@@ -8,6 +8,7 @@ class KitsController < ApplicationController
 
   def show
     @kit = Kit.find(params[:id])
+    @item = @kit.labelling_of_items.order(updated_at: :desc).limit(8)
   end
 
   def new

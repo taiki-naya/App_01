@@ -30,7 +30,14 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    if user_signed_in?
+      @post = Post.new(post_params)
+      @post.user_id = current_user.id
+    else
+      user  = User.find_by(email: 'guest@guest.com')
+      @post = Post.new(post_params)
+      @post.user_id = user.id
+    end
 
     respond_to do |format|
       if @post.save

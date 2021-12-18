@@ -1,9 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="white_box">
+  <h3><%= @kit.series %></h3>
+  <table class="store_info row text_left">
+    <tr class="row">
+      <th class="col-md-12"><%# = image_tag @kit.image.variant(resize: "250x250") if @kit.image.attached?  %></th>
+    </tr>
+  </table><br>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to '編集', edit_league_team_kit_path(@kit.team.league_id, @kit.team_id, @kit.id) %> |
+    <%= link_to '一覧画面へ戻る', league_team_kits_path %>
+  <% end %>
+</div><br><br>
 
-<p>
-  <strong>Series:</strong>
-  <%= @kit.series %>
-</p>
-
-<%= link_to 'Edit', edit_league_team_kit_path(@kit.team.league_id, @kit.team_id, @kit.id) %> |
-<%= link_to 'Back', league_team_kits_path %>
+<div class="row">
+  <% @item.each do |labelling| %>
+    <div class="top_items col-sm-6 col-md-3">
+      <div class="card">
+        <% if labelling.item.image.attached? %>
+          <%= link_to image_tag(labelling.item.image.variant(combine_options:{gravity: :center, resize:"385x575^", crop:"385x575+0+0"})),
+          store_item_path(labelling.item.store_id, labelling.item.id), class:"card-img-top"  %>
+        <% else %>
+          <%= image_tag 'item_no_image.png', size: '385x575', class:"card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text">
+          <%= link_to labelling.item.store.name, store_path(labelling.item.store_id) %><br>
+          <%= link_to labelling.item.name, store_item_path(labelling.item.store_id, labelling.item.id) %><br>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

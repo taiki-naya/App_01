@@ -1,16 +1,31 @@
-<h1>Editing Kit</h1>
+<h3>ユニフォーム情報編集</h3>
 
 <%= form_with(model: [@kit.team.league, @kit.team, @kit], local: true) do |form| %>
+  <% if @kit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @kit.errors.count %> 件のエラーにより登録できませんでした。</h2>
+
+      <ul>
+      <% @kit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 
   <div class="field">
-    <%= form.label :series %>
-    <%= form.text_field :series %>
+    <%= form.text_field :series, placeholder: 'ユニフォームの年式を入力' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :画像を変更しない場合は何も選択しないでください %>
+    <%= form.file_field :image %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '更新' %>
   </div>
 <% end %>
-<%= link_to 'Show', league_team_kit_path(@kit.team.league_id, @kit.team_id, @kit.id) %> |
-<%= link_to 'Back', league_team_kit_path %>
+<%= link_to 'ユニフォーム詳細画面に戻る', league_team_kit_path(@kit.team.league_id, @kit.team_id, @kit.id) %> |
+<%= link_to '一覧画面に戻る', league_team_kit_path %>
