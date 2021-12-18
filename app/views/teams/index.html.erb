@@ -1,32 +1,28 @@
-<p id="notice"><%= notice %></p>
+<h3><%= @league.name %></h3>
 
-<h1><%= @league.name %></h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Home town</th>
-      <th>Established</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @teams.each do |team| %>
+<div class="store_index">
+  <table>
+    <thead>
       <tr>
-        <td><%= team.name %></td>
-        <td><%= team.home_town %></td>
-        <td><%= team.established %></td>
-        <td><%= team.description %></td>
-        <td><%= link_to 'Show', league_team_path(@league, team.id) %></td>
-        <td><%= link_to 'Edit', edit_league_team_path(@league, team.id) %></td>
-        <td><%= link_to 'Destroy', league_team_path(@league, team.id), method: :delete, data: { confirm: '削除しますか?' } %></td>
+        <th scope="col">チーム名</th>
+        <th scope="col">ホームタウン</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <td><%= team.home_town %></td>
+          <td><%= image_tag team.image.variant(resize:'500x500').processed if team.image.attached? %></td>
+          <td><%= link_to '詳細', league_team_path(@league, team.id) %></td>
+          <td><%= link_to '編集', edit_league_team_path(@league, team.id) %></td>
+          <td><%= link_to '削除', league_team_path(@league, team.id), method: :delete, data: { confirm: '削除しますか?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div class="store_index">
 
 <br>
 
