@@ -1,12 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Leagues</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Nationality</th>
+      <th>リーグ名</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,10 +12,9 @@
     <% @leagues.each do |league| %>
       <tr>
         <td><%= league.name %></td>
-        <td><%= league.nationality %></td>
-        <td><%= link_to 'Show', league %></td>
-        <td><%= link_to 'Edit', edit_league_path(league) %></td>
-        <td><%= link_to 'Destroy', league, method: :delete, data: { confirm: '削除しますか?' } %></td>
+        <td><%= link_to '詳細', league %></td>
+        <td><%= link_to '編集', edit_league_path(league) %></td>
+        <td><%= link_to '削除', league, method: :delete, data: { confirm: '削除しますか?' } %></td>
       </tr>
     <% end %>
   </tbody>
