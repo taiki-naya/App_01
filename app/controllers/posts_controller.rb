@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    redirect_to posts_path, notice: "編集権限がありません" unless user_signed_in? && (@post.user == current_user || current_user&.admin?)
     @labelled_records = @post.labelling_of_posts
     @labelled_hash = {}
     @labelled_records.each do |labelled_record|

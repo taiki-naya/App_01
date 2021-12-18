@@ -4,5 +4,5 @@ class League < ApplicationRecord
   has_many :labelling_of_items, as: :labelable
   has_many :favorites, as: :favoritable
 
-  validates :series, presence: true
+  validates :name, presence: true
 end
