@@ -1,11 +1,14 @@
 ## AppName
+**KitCommu**
 
-![overview]()
+![overview](https://github.com/taiki-naya/App_01/blob/master/docs/overview.png)
 
 ## 概要 / Overview
+インターネットや大手ECサイト内に点在している小規模スポーツ店の海外サッカークラブのユニフォームの商品情報を  
+このアプリケーションを通して一か所に集約することで今までその存在を知らなかった購買層の機会損失を減らすことを目的とする。
 
 ## リンク / Links
-AWS : http://52.199.96.210/posts
+AWS : http://52.199.96.210
 
 ## 開発言語 / Languages
 - Ruby 2.6.5

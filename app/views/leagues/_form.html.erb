@@ -1,0 +1,25 @@
+<%= form_with(model: league, local: true) do |form| %>
+  <% if league.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= league.errors.count %> 件のエラーにより登録できませんでした。</h2>
+
+      <ul>
+      <% league.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_field :name, placeholder: 'リーグ名を入力' %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :nationality, placeholder: '開催国を入力' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '登録' %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<h3><%= @league.name %></h3>
+
+<div class="store_index">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">チーム名</th>
+        <th scope="col">ホームタウン</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <td><%= team.home_town %></td>
+          <td><%= image_tag team.image.variant(resize:'500x500').processed if team.image.attached? %></td>
+          <td><%= link_to '詳細', league_team_path(@league, team.id) %></td>
+          <td><%= link_to '編集', edit_league_team_path(@league, team.id) %></td>
+          <td><%= link_to '削除', league_team_path(@league, team.id), method: :delete, data: { confirm: '削除しますか?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div class="store_index">
+
+<br>
+
+<%= link_to 'チームを新規登録', new_league_team_path %>

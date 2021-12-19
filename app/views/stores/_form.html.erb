@@ -1,0 +1,33 @@
+<%= form_with(model: store, local: true) do |form| %>
+  <% if store.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(store.errors.count, "error") %> 件のエラーにより登録できませんでした。</h2>
+
+      <ul>
+      <% store.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_field :name, placeholder: 'ストア名を入力してください（入力）' %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :link, placeholder: 'ホームページURLを入力してください' %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :adress, placeholder: '住所を入力してください' %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :note, placeholder: '店舗紹介を入力してください' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '登録' %>
+  </div>
+<% end %>

@@ -1,0 +1,241 @@
+.post__container {
+    padding: 0;
+    background: #ffffff;
+    overflow: hidden;
+    /* max-width: 400px; */
+    margin: 20px auto;
+    font-size: 80%;
+    border: solid 1px #eeeeee;
+  }
+
+  .post__container a {
+    color: #58aeed;
+  }
+
+  /* タイトル部分 */
+  .post__container .post__title {
+    background: #777777;
+    padding: 10px;
+    text-align: center;
+    font-size: 150%;
+    color: #ffffff;
+  }
+
+  .post__container .post__title .post-logo {
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .post__container .post__title span {
+    font-size: 20px;
+  }
+
+  /* タイムライン部分 */
+  .post__container .post__contents {
+    overflow: hidden;
+    position: relative;
+    line-height: 135%;
+  }
+
+  .post__container .post__contents.scroll {
+    height: 500px;
+    overflow-y: scroll;
+  }
+
+  .post__container .post__block {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-bottom: solid 1px #eeeeee;
+    overflow: hidden;
+  }
+
+  .post__container .post__block:last-child {
+    border-bottom: solid 0px;
+  }
+  /* アイコン画像 */
+  .post__container .post__block figure {
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 50px;
+  }
+    /* 正方形を用意 */
+  .post__container .post__block figure img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  /* コメントエリア */
+  .post__container .post__block-text {
+    margin: 0;
+    position: relative;
+    margin-left: 60px;
+    padding-right: 10px;
+  }
+
+  .post__container .post__block-text .name {
+    font-weight: bold;
+  }
+
+  .post__container .post__block-text .name .name_reply {
+    color: #8a9aa4;
+    margin-left: 10px;
+  }
+
+  .post__container .post__block-text .date {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    text-align: right;
+    color: #8a9aa4;
+  }
+  /* 本文 */
+  .post__container .post__block-text .text {
+    margin: 5px 0;
+  }
+  /* 画像を貼る場合 */
+  .post__container .post__block-text .text .in-pict img {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    margin: 5px 0;
+    width: auto;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  /*///////////////////////////////////////////
+//埋め込みアイコン
+////////////////////////////////////////////*/
+
+.post__container .post__icon br{
+  display: none;
+}
+
+.post__container .post__icon {
+  margin: 10px;
+}
+
+.post__container .post__icon .post-edit i {
+  width: 14px;
+  height: 14px;
+  display: block;
+  padding-left: 20px;
+  width: 50px;
+  float: left;
+  color: #777777;
+}
+
+.post__container .post__icon .post-destroy i {
+  width: 14px;
+  height: 14px;
+  display: block;
+  padding-left: 20px;
+  width: 50px;
+  float: left;
+  color: #777777;
+}
+
+/*タグクラウドのデザイン*/
+.widget_tag_cloud .tagcloud a{
+  position:relative;
+  background:#777777;
+  display:inline-block;
+  height:15px;
+  color:#fff;
+  line-height:15px;
+  margin:5px 10px;
+  padding:0 5px;
+  text-decoration:none;
+  font-size:12px;
+ }
+ /*タグクラウド角を尖らせる*/
+ .tagcloud a:before {
+  border-top: 7.5px solid transparent;
+  border-bottom: 7.5px solid transparent;
+  border-right: 15px solid #777777;
+  content: '';
+  display: block;
+  margin-left: -15px;
+  position: absolute;
+  left: 0;
+ }
+ /*タグクラウドマウスオーバー時*/
+ .widget_tag_cloud .tagcloud a:hover{
+ color:#000;
+ background:#ddd;
+ }
+ .tagcloud a:hover:before{
+  border-right:0;
+ }
+
+ /* セレクトボックス */
+ /* .tagging {
+	overflow: hidden;
+	width: 90%;
+	margin: 2em auto;
+	text-align: center;
+}
+.tagging select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.tagging select::-ms-expand {
+    display: none;
+}
+.tagging. {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.tagging::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.tagging. select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+} */
+
+
+textarea {
+  width: 400px;
+  height: 200px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+textarea:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}

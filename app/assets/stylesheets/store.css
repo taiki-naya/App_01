@@ -1,0 +1,104 @@
+.store_title {
+  text-align: center;
+}
+
+.store_index body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.25;
+  }
+
+  .store_index table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    padding: 0;
+    width: 650px;
+  }
+  .store_index table tr {
+    background-color: #fff;
+    border-bottom: 2px solid #fff;
+  }
+  .store_index table tr:nth-child(even){
+    background-color: #eee;
+  }
+  .store_index table th,
+  .store_index table td {
+    padding: .35em 1em;
+  }
+  .store_index table thead th {
+      font-size: .85em;
+      padding: 1em;
+      text-align: center;
+  }
+  .store_index table thead tr{
+    background-color: #777777;
+    color:#fff;
+  }
+  .store_index table tbody th {
+    text-align: left;
+    font-size: .8em;
+  }
+  .store_index .name{
+     text-align: left;
+     font-size: .75em;
+  }
+  .store_index .link{
+    text-align: right;
+    font-weight: bold;
+  }
+  .store_index .count{
+    text-align: center;
+    font-size: .75em;
+ }
+@media screen and (max-width: 600px) {
+    .store_index table {
+      border: 0;
+      width:100%
+    }
+    .store_index table th{
+      background-color: #fd6767;
+      display: block;
+      border-right: none;
+    }
+    .store_index table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    .store_index table tr {
+      display: block;
+      margin-bottom: .625em;
+      border: 1px solid #fd6767;
+    }
+    .store_index table td {
+      border-bottom: 1px dotted #bbb;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+      position: relative;
+      padding: 1.5em 1em 1.5em 4em;
+      border-right: none;
+    }
+
+    .store_index table td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      position: absolute;
+      left: 10px;
+      color: #000;
+    }
+    .store_index table td:last-child {
+      border-bottom: 0;
+    }
+    .store_index table tbody th {
+      color: #fff;
+      padding: 1em
+  }
+  .store_index table tr:nth-child(even){
+    background-color: #fff;
+  }
+}

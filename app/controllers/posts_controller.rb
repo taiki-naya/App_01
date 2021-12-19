@@ -13,18 +13,36 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @leagues = League.all
+    @stores  = Store.all
   end
 
   # GET /posts/1/edit
   def edit
+    redirect_to posts_path, notice: "編集権限がありません" unless user_signed_in? && (@post.user == current_user || current_user&.admin?)
+    @labelled_records = @post.labelling_of_posts
+    @labelled_hash = {}
+    @labelled_records.each do |labelled_record|
+      @labelled_hash.store(labelled_record.labelable_id, labelled_record.labelable_type.downcase)
+    end
+    @leagues = League.all
+    @stores  = Store.all
   end
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    if user_signed_in?
+      @post = Post.new(post_params)
+      @post.user_id = current_user.id
+    else
+      user  = User.find_by(email: 'guest@guest.com')
+      @post = Post.new(post_params)
+      @post.user_id = user.id
+    end
 
     respond_to do |format|
       if @post.save
+        LabellingOfPost.insert(params, @post)
         format.html { redirect_to @post, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
@@ -38,6 +56,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        LabellingOfPost.insert(params, @post)
         format.html { redirect_to @post, notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -64,6 +83,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :image)
     end
 end

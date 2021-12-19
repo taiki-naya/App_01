@@ -1,0 +1,40 @@
+<div class="white_box">
+  <h3>商品詳細</h3>
+  <div class="widget_tag_cloud">
+    <span>
+      <% @item.labelling_of_items.each do |labelling|  %>
+        <div class="tagcloud">
+          <%= link_to labelling.labelable.name, league_path(labelling.labelable.id) if labelling.labelable_type == 'League' %>
+          <%= link_to labelling.labelable.name, league_team_path(labelling.labelable.league_id, labelling.labelable.id) if labelling.labelable_type == 'Team' %>
+          <%= link_to labelling.labelable.series, league_team_kit_path(labelling.labelable.team.league_id, labelling.labelable.team_id, labelling.labelable.id) if labelling.labelable_type == 'Kit' %>
+        </div>
+      <% end  %>
+    </span>
+  </div>
+  <table class="store_info row text_left">
+    <tr class="row">
+      <th class="col-md-12"><%= image_tag @item.image.variant(resize: "250x250") if @item.image.attached? %></th>
+    </tr>
+    <tr class="row">
+      <th>商品名</th>
+      <td class="col-md-3"><strong><%= @item.name %></strong></td>
+    </tr>
+    <tr class="row">
+      <th>サイズ</th>
+      <td class="col-md-3"><strong><%= @item.size %></strong></td>
+    </tr>
+    <tr class="row">
+      <th>商品URL</th>
+      <td class="col-md-3"><strong><%= link_to @item.link, "#{@item.link}" %></strong></td>
+    </tr>
+    <tr class="row">
+      <th>￥</th>
+      <td class="col-md-3"><strong><%= @item.price %></strong></td>
+    </tr>
+  </table><br>
+  <% if user_signed_in? && current_user&.admin? %>
+    <%= link_to '商品情報を編集する', edit_store_item_path(@item.store_id, @item.id) %> |
+    <%= link_to '商品情報を削除する', store_item_path(@item.store_id, @item.id), method: :delete, data: { confirm: '削除しますか?' } %> |
+  <% end %>
+    <%= link_to '商品一覧へ戻る', store_items_path %>
+</div>

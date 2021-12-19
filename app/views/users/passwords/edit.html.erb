@@ -1,0 +1,25 @@
+<h4>パスワード変更</h4>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <div class="inputWithIcon">
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New Password (#{@minimum_password_length}以上入力してください)" %>
+      <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="inputWithIcon">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'New Password (再入力)' %>
+      <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Change my password" %>
+  </div>
+<% end %>
+<%= render "users/shared/links" %>

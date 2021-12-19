@@ -1,0 +1,59 @@
+<br><div class="white_box">
+  <h3>ストア詳細</h3>
+  <table class="store_info row text_left">
+    <tr class="row">
+      <th class="col-md-12"><%# = image_tag @store.image.variant(resize: "250x250") if @store.image.attached?  %></th>
+    </tr>
+    <tr class="row">
+      <th><i class="fa fa-home fa-lg fa-fw" aria-hidden="true"></i></th>
+      <td class="col-md-3"><strong><%= @store.name %></strong></td>
+    </tr>
+    <% if @store.link.present? %>
+      <tr class="row">
+        <th class="col-md-1 offset-md-1"><i class="fa fa-laptop fa-lg fa-fw" aria-hidden="true"></i></th>
+        <td class="col-md-3"><%= link_to @store.link, "#{@store.link}" %></td>
+      </tr>
+    <% end %>
+    <% if @store.note.present? %>
+      <tr class="row">
+        <th class="col-md-1 offset-md-1"><i class="fa fa-sticky-note-o fa-lg fa-fw" aria-hidden="true"></i></th>
+        <td class="col-md-3"><%= @store.note %></td>
+      </tr>
+    <% end %>
+  </table><br>
+  <% if user_signed_in? %>
+    <% if @favorite.present? %>
+      <%= link_to 'お気に入り解除する', favorite_path(favorite: @favorite.id), method: :delete %>
+    <% else %>
+      <%= link_to 'お気に入りする', favorites_path(store: @store.id), method: :post %>
+    <% end %>
+  <% end %>
+  <% if user_signed_in? && current_user&.admin? %>
+    <%= link_to '編集', edit_store_path(@store) %> |
+    <%= link_to '一覧へ戻る', stores_path %>
+  <% end %>
+</div><br><br>
+
+<div class="row">
+  <% @items.each do |item| %>
+    <div class="top_items col-sm-6 col-md-3">
+      <div class="card">
+        <% if item.image.attached? %>
+          <%= link_to image_tag(item.image.variant(combine_options:{gravity: :center, resize:"385x575^", crop:"385x575+0+0"})),
+          store_item_path(item.store_id, item.id), class:"card-img-top"  %>
+        <% else %>
+          <%= image_tag 'item_no_image.png', size: '385x575', class:"card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text">
+            <%= link_to item.store.name, store_path(item.store_id) %><br>
+            <%= link_to item.name, store_item_path(item.store_id, item.id) %><br>
+            ¥<%= item.price.to_s(:delimited) %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div><br>
+
+<%= link_to '全商品一覧へ', store_items_path(store_id: @store.id)%>

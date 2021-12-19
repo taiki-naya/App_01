@@ -1,0 +1,47 @@
+<%= form_with(model: [@league, @team], local: true) do |form| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> 件のエラーにより登録できませんでした。</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3>チーム情報を入力</h3>
+
+  <div class="field">
+    <%= form.text_field :name, placeholder: 'チーム名（必須）' %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :home_town, placeholder: 'ホームタウン' %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :established, placeholder: '設立年' %>
+  </div>
+
+  <div class="field">
+    <%= form.text_area :description, placeholder: 'チーム紹介' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :※チームロゴを追加する場合は画像を選択してください。 %>
+    <%= form.file_field :image %>
+  </div>
+
+  <%= form.submit "入力フォームから登録" %>
+<% end %>
+<%= form_with url: import_league_teams_path do |f| %>
+
+  <h3>CSVファイルから登録</h3>
+
+  <%= f.label :CSVファイルからチームを一括登録する場合はファイルを選択してください %>
+  <%= f.file_field :file, accept: '.csv' %>
+  <%= f.submit "CSVから登録" %>
+<% end %>
+<%= link_to '一覧へ戻る', league_teams_path %>

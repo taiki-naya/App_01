@@ -1,0 +1,155 @@
+.inputWithIcon {
+    position: relative;
+  }
+
+ .inputWithIcon i {
+    position: absolute;
+    left: 0;
+    top: 11px;
+    padding: 9px 15px;
+    color: #aaa;
+    transition: 0.3s;
+  }
+
+ .inputWithIcon.inputIconBg i {
+    background-color: #aaa;
+    color: #fff;
+    padding: 9px 4px;
+    border-radius: 4px 0 0 4px;
+  }
+
+
+/* deviseメール入力フォーム */
+ input[type="email"] {
+    width: 400px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+  }
+
+  input[type="email"]:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+  }
+
+  .inputWithIcon input[type="email"] {
+    padding-left: 40px;
+  }
+
+
+  .inputWithIcon input[type="email"]:focus + i {
+    color: dodgerBlue;
+  }
+
+
+  .inputWithIcon.inputIconBg input[type="email"]:focus + i {
+    color: #fff;
+    background-color: dodgerBlue;
+  }
+
+
+/* deviseパスワード入力フォーム */
+  input[type="password"] {
+    width: 400px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+  }
+
+  input[type="password"]:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+  }
+
+  .inputWithIcon input[type="password"] {
+    padding-left: 40px;
+  }
+
+  .inputWithIcon input[type="password"]:focus + i {
+    color: dodgerBlue;
+  }
+
+  .inputWithIcon.inputIconBg input[type="password"]:focus + i {
+    color: #fff;
+    background-color: dodgerBlue;
+  }
+
+
+  /* deviseテキスト入力フォーム */
+ input[type="text"] {
+  width: 400px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type="text"] {
+  padding-left: 40px;
+}
+
+
+.inputWithIcon input[type="text"]:focus + i {
+  color: dodgerBlue;
+}
+
+
+.inputWithIcon.inputIconBg input[type="text"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+
+  /* 数字入力フォーム */
+ input[type="number"] {
+  width: 400px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="number"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type="number"] {
+  padding-left: 40px;
+}
+
+
+.inputWithIcon input[type="number"]:focus + i {
+  color: dodgerBlue;
+}
+
+
+.inputWithIcon.inputIconBg input[type="number"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+
+
+/* submitボタンデザイン */
+.inputWithIcon input[type="submit"] {
+  border-radius: 5%;
+  box-shadow: 3px 3px 3px gray;
+}

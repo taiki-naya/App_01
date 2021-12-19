@@ -1,0 +1,29 @@
+<h3>ユニフォーム新規登録</h3>
+
+<%= form_with(model: [@league, @team, @kit], local: true) do |form| %>
+  <% if @kit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @kit.errors.count %> 件のエラーにより登録できませんでした。</h2>
+
+      <ul>
+      <% @kit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_field :series, placeholder: '年式を入力' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :画像を追加する場合はファイルを選択してください %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '登録' %>
+  </div>
+<% end %>
+<%= link_to '一覧画面へ戻る', league_team_kits_path %>
