@@ -8,7 +8,7 @@ class Team < ApplicationRecord
   has_one_attached :image
 
   validates :name, presence: true
-  validates :established, numericality: {greater_than_or_equal_to: 1850, less_than_or_equal_to: Date.today.to_s.slice(0..3).to_i}
+  # validates :established, numericality: {greater_than_or_equal_to: 1850, less_than_or_equal_to: Date.today.to_s.slice(0..3).to_i}
 
   def self.import(file, league)
     CSV.foreach(file.path, headers: true) do |row|
