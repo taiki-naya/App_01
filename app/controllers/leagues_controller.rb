@@ -1,4 +1,5 @@
 class LeaguesController < ApplicationController
+  before_action :access_restriction, except: [:index, :show]
   def index
     @leagues = League.all
   end
@@ -43,6 +44,10 @@ class LeaguesController < ApplicationController
   private
   def league_params
     params.require(:league).permit(:name, :nationality)
+  end
+
+  def access_restriction
+    redirect_to root_path, notice: '権限がありません。' unless user_signed_in? || current_user&.admin?
   end
 
 end
