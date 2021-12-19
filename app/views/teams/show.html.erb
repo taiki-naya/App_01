@@ -2,7 +2,7 @@
   <h3><%= @team.name %></h3>
   <table class="store_info row text_left">
     <tr class="row">
-      <th><%= image_tag @team.image.variant(resize: "250x250") if @team.image.attached?  %></th>
+      <th class ="team_emblem"><%= image_tag @team.image.variant(resize: "250x250") if @team.image.attached?  %></th>
       <td class="col-md-3"><strong><%= link_to @team.link, "#{@team.link}" %></strong></td>
     </tr>
   </table><br>
