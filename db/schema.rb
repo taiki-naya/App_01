@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_131512) do
+ActiveRecord::Schema.define(version: 2021_12_19_151758) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(version: 2021_12_18_131512) do
     t.bigint "league_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link"
+    t.string "twitter_acount"
     t.index ["league_id"], name: "index_teams_on_league_id"
   end
 
