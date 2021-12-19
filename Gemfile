@@ -14,6 +14,7 @@ gem 'cancancan'
 gem 'devise'
 gem 'kaminari'
 gem 'rails_admin', '~> 2.0'
+gem 'ransack'
 gem 'roo'
 
 # Middleware
