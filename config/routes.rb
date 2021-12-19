@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   get 'items', to: 'items#index_all'
+  get 'search', to: 'items#search'
   resources :stores do
     resources :items
   end

@@ -1,6 +1,9 @@
 <%= render 'search', q: @q, url: items_path %>
 
 <div class="row">
+  <% unless @items.present? %>
+    <h3>該当する商品はありません。</h3>
+  <% end %>
   <% @items.each do |item| %>
     <div class="top_items col-sm-6 col-md-3">
       <div class="card">
