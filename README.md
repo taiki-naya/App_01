@@ -14,8 +14,19 @@ AWS : http://52.199.96.210
 - Ruby 2.6.5
 - Ruby on Rails 5.2.6
 - MySQL 8.0.27
+- NginX
+- Puma
+- AWS
+  - EC2
+- RSpec
 
 ## 機能および使用Gem / Functions & Gems
+- ユーザー登録、ログイン機能（devise）
+- 投稿機能
+  - ラベル機能（jquery_rails）
+- お気に入り機能
+- 検索機能（ransack, jquery_rails）
+- CSVファイル登録機能（roo）
 
 ## テスト / Test
 - RSpec
