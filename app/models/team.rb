@@ -22,6 +22,6 @@ class Team < ApplicationRecord
 
   private
   def self.updatable_attributes
-    ['name', 'home_town']
+    ['name', 'home_town', 'link', 'twitter_acount']
   end
 end
