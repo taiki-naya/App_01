@@ -1,4 +1,9 @@
 class ItemsController < ApplicationController
+
+  def index_all
+    @items = Item.all.page(params[:page]).per(20)
+  end
+
   def index
     @store = Store.find(params[:store_id])
     @items = @store.items.order(created_at: :desc).page(params[:page]).per(20)

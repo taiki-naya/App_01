@@ -1,0 +1,25 @@
+<div class="row">
+  <% @items.each do |item| %>
+    <div class="top_items col-sm-6 col-md-3">
+      <div class="card">
+        <% if item.image.attached? %>
+          <%= link_to image_tag(item.image.variant(combine_options:{gravity: :center, resize:"385x575^", crop:"385x575+0+0"})),
+          store_item_path(item.store_id, item.id), class:"card-img-top"  %>
+        <% else %>
+          <%= image_tag 'item_no_image.png', size: '385x575', class:"card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text">
+            <%= link_to item.store.name, store_path(item.store_id) %><br>
+            <%= link_to item.name, store_item_path(item.store_id, item.id) %><br>
+            ¥<%= item.price.to_s(:delimited) %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div><br>
+
+<div class="page_nate">
+    <%= paginate @items %>
+</div>
