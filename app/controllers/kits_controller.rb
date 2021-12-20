@@ -51,7 +51,7 @@ class KitsController < ApplicationController
 
   private
   def kit_params
-    params.require(:kit).permit(:series, :team_id)
+    params.require(:kit).permit(:series, :team_id, :image)
   end
 
 
