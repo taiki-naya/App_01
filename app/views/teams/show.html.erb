@@ -2,19 +2,13 @@
   <h3><%= @team.name %></h3>
   <table class="store_info row text_left">
     <tr class="row">
-      <th class="col-md-12"><%# = image_tag @team.image.variant(resize: "250x250") if @team.image.attached?  %></th>
-    </tr>
-    <tr class="row">
-      <th>ホームタウン</th>
-      <td class="col-md-3"><strong><%= @team.home_town %></strong></td>
-    </tr>
-    <tr class="row">
-      <% if @team.established.present? %>
-        <th>設立</th>
-        <td class="col-md-3"><strong><%= @team.established %>年</strong></td>
-      <% end %>
+      <th class ="team_emblem"><%= image_tag @team.image.variant(resize: "250x250") if @team.image.attached?  %></th>
+      <td class="col-md-3"><strong><%= link_to @team.link, "#{@team.link}" %></strong></td>
     </tr>
   </table><br>
+  <div class="official_tweet">
+    <a class="twitter-timeline" href="https://twitter.com/<%= @team.twitter_acount %>?ref_src=twsrc%5Etfw">Tweets by <%= @team.twitter_acount %></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
   <% if user_signed_in? %>
     <% if @favorite.present? %>
       <%= link_to 'お気に入り解除する', favorite_path(favorite: @favorite.id), method: :delete %>

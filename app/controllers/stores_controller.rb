@@ -1,4 +1,5 @@
 class StoresController < ApplicationController
+  before_action :access_restriction, except: [:index, :show]
   def index
     @stores = Store.all.page(params[:page]).per(10)
   end
@@ -51,6 +52,9 @@ class StoresController < ApplicationController
   private
   def store_params
     params.require(:store).permit(:name, :link, :address, :note)
+  end
+  def access_restriction
+    redirect_to root_path, notice: '権限がありません。' unless user_signed_in? || current_user&.admin?
   end
 
 end

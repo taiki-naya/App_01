@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :access_restriction, except: [:index_all, :index, :show, :search]
 
   def index_all
     @q = Item.ransack(params[:q])
@@ -80,10 +81,15 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :size, :price, :link)
+    params.require(:item).permit(:name, :size, :price, :link, :image)
   end
 
   def search_params
     params.require(:q).permit!
   end
+
+  def access_restriction
+    redirect_to root_path, notice: '権限がありません。' unless user_signed_in? || current_user&.admin?
+  end
+
 end
