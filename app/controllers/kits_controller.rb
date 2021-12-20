@@ -1,4 +1,5 @@
 class KitsController < ApplicationController
+  before_action :access_restriction, except: [:show]
 
   def index
     @league = League.find(params[:league_id])
@@ -50,7 +51,12 @@ class KitsController < ApplicationController
 
   private
   def kit_params
-    params.require(:kit).permit(:series, :team_id)
+    params.require(:kit).permit(:series, :team_id, :image)
+  end
+
+
+  def access_restriction
+    redirect_to root_path, notice: '権限がありません。' unless user_signed_in? || current_user&.admin?
   end
 
 end

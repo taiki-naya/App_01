@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :access_restriction, except: [:show]
 
   def index
     @league = League.find(params[:league_id])
@@ -53,7 +54,10 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-    params.require(:team).permit(:name, :home_town, :established, :description, :image)
+    params.require(:team).permit(:name, :home_town, :established, :description, :link, :twitter_acount, :image)
+  end
+  def access_restriction
+    redirect_to root_path, notice: '権限がありません。' unless user_signed_in? || current_user&.admin?
   end
 
 end
